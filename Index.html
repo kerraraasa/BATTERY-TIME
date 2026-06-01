@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حاسبة حصن الأمان</title>
+    <style>
+        body { font-family: sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .card { background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 90%; max-width: 400px; text-align: center; }
+        h1 { color: #001b3a; margin-bottom: 5px; font-size: 24px; }
+        .brand { color: #FF851B; margin-bottom: 20px; font-size: 14px; font-weight: bold; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #ddd; border-radius: 10px; box-sizing: border-box; }
+        button { width: 100%; padding: 15px; background: #001b3a; color: white; border: none; border-radius: 10px; cursor: pointer; }
+        #result { margin-top: 20px; padding: 15px; background: #e8f5e9; border-radius: 10px; display: none; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>حصن الأمان</h1>
+    <div class="brand">المهندس كرار</div>
+    <input type="number" id="battery" placeholder="سعة البطارية (واط.ساعة)">
+    <input type="number" id="load" placeholder="تيار الحمل (أمبير)">
+    <button onclick="calculate()">احسب مدة التشغيل</button>
+    <div id="result"></div>
+</div>
+
+<script>
+    function calculate() {
+        let b = document.getElementById('battery').value;
+        let l = document.getElementById('load').value;
+        if(b > 0 && l > 0) {
+            let h = ((b * 0.8 * 0.9) / 220) / l;
+            let hrs = Math.floor(h);
+            let mins = Math.round((h - hrs) * 60);
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('result').innerHTML = "مدة التشغيل: " + hrs + " ساعة و " + mins + " دقيقة";
+        }
+    }
+</script>
+</body>
+</html>
